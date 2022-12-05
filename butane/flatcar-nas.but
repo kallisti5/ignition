@@ -1,0 +1,19 @@
+variant: flatcar
+version: 1.0.0
+passwd:
+  users:
+    - name: kallisti5
+      ssh_authorized_keys:
+        - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGsPsn3XPLw1NkhOiXUNWB1RXtTuTsNVPx55HgLAMIj4 alex@terarocket.io
+      groups:
+        - wheel
+        - docker
+        - systemd-journal
+        - portage
+      shell: /bin/bash
+storage:
+  files:
+    - path: /etc/hostname
+      contents:
+        source: "data:,atxnas01"
+      mode: 420

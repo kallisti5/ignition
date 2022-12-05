@@ -1,0 +1,6 @@
+variant: flatcar
+version: 1.0.0
+ignition:
+  config:
+    replace:
+      source: https://raw.githubusercontent.com/kallisti5/ignition/main/ign/flatcar-nas.ign
