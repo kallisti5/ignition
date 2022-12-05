@@ -8,8 +8,6 @@ passwd:
       groups:
         - wheel
         - docker
-        - systemd-journal
-        - portage
       shell: /bin/bash
 storage:
   files:
