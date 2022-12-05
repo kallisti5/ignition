@@ -8,6 +8,7 @@ passwd:
       groups:
         - wheel
         - docker
+        - sudo
       shell: /bin/bash
 storage:
   files:
