@@ -16,3 +16,35 @@ storage:
       contents:
         source: "data:,atxnas01"
       mode: 420
+systemd:
+  units:
+    - name: storage-vol01.mount
+      enable: true
+      contents: |
+        [Unit]
+        Before=local-fs.target
+        [Mount]
+        What=/dev/disk/by-label/VOL01
+        Where=/VOL01
+        Type=btrfs
+        [Install]
+        WantedBy=local-fs.target
+    - name: storage-docker.mount
+      enable: true
+      contents: |
+        [Unit]
+        Description=Mount container volume to /var/lib/docker
+        Before=local-fs.target
+        [Mount]
+        What=/dev/disk/by-label/DOCKER
+        Where=/var/lib/docker
+        Type=btrfs
+        [Install]
+        WantedBy=local-fs.target
+    - name: docker.service
+      dropins:
+        - name: 10-wait-docker.conf
+          contents: |
+            [Unit]
+            After=storage-docker.mount
+            Requires=storage-docker.mount
